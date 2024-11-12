@@ -41,8 +41,11 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin', 'as' => 'a
     Route::post('bus-terminal/update', [BusTerminalController::class, 'update'])->name('update-bus-terminal');
     Route::get('bus-terminal/delete/{id}', [BusTerminalController::class, 'delete'])->name('delete-bus-terminal');
 
+    // Routes
     Route::get('routes', [RouteController::class, 'index'])->name('routes');
-    Route::get('routes/create', [RouteController::class, 'create'])->name('create-routes');
+    Route::get('routes/create', [RouteController::class, 'create_route'])->name('create-routes');
+    Route::post('routes/create', [RouteController::class, 'create'])->name('store-routes');
+    Route::get('routes/{id}/edit', [RouteController::class, 'edit_route'])->name('edit-routes');
 });
 
 

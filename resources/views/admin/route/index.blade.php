@@ -30,12 +30,12 @@
                             <tr>
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $route->terminal->name }}</td>
-                                <td>{{ $route->terminal->destination }}</td>
-                                <td>{{ $route->terminal->price }}</td>
-                                <td>{{ $route->terminal->duration }}</td>
-                                <td>{{ $route->terminal->departure }}</td>
+                                <td>{{ $route->destination }}</td>
+                                <td>₦{{ number_format($route->price) }}</td>
+                                <td>{{ $route->duration }}</td>
+                                <td>{{ \Carbon\Carbon::parse($route->departure)->format('D M d, Y h:i A') }}</td>
                                 <td>
-                                    <a href="{{ route('admin.edit-bus-terminal', $route->id) }}" class="btn btn-sm btn-primary">Edit</a>
+                                    <a href="{{ route('admin.edit-routes', $route->id) }}" class="btn btn-sm btn-primary">Edit</a>
                                     <a href="{{ route('admin.delete-bus-terminal', $route->id) }}" class="btn btn-sm btn-danger">Delete</a>
                                 </td>
                             </tr>

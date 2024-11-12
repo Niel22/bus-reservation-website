@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('breadcrumb-title', 'Create Route')
+@section('breadcrumb-title', 'Edit Route')
 @section('content')
 <section class="section">
   <div class="row">
@@ -16,7 +16,7 @@
               <select name="terminal_id" class="form-select">
                 <option value="">Select terminal</option>
                 @foreach($terminals as $terminal)
-                <option value="{{ $terminal->id }}">{{ $terminal->name }}</option>
+                <option {{ $route->terminal_id == $terminal->id ? "selected" : "" }} value="{{ $terminal->id }}">{{ $terminal->name }}</option>
                 @endforeach
               </select>
               @error('terminal_id')
@@ -25,7 +25,7 @@
             </div>
             <div class="col-6">
               <label for="inputNanme4" class="form-label">Destination</label>
-              <input type="text" name="destination" list="nigeriaStates" placeholder="Select Destination State"
+              <input type="text" value="{{ $route->destination }}" name="destination" list="nigeriaStates" placeholder="Select Destination State"
                 class="form-control">
               <datalist id="nigeriaStates">
                 <option value="Abia">
@@ -70,12 +70,21 @@
               <span class="text-sm text-danger">{{$message}}</span>
               @enderror
             </div>
+
+            @php
+                $value = $route->duration;
+
+                $parts = explode(' ', $value);
+
+                $hour = preg_replace('/\D/', '', $parts[0]);
+                $min = preg_replace('/\D/', '', $parts[1]);
+            @endphp
             <div class="col-6">
               <label for="journeyDuration" class="form-label">Journey Duration</label>
               <div class="input-group">
-                <input type="number" name="hours" class="form-control" placeholder="Hours" min="0">
+                <input type="number" name="hours" value="{{ $hour }}" class="form-control" placeholder="Hours" min="0">
                 <span class="input-group-text">h</span>
-                <input type="number" name="minutes" class="form-control" placeholder="Minutes" min="0" max="59">
+                <input type="number" name="minutes" value="{{ $min }}" class="form-control" placeholder="Minutes" min="0" max="59">
                 <span class="input-group-text">m</span>
               </div>
               @error('hours')
@@ -85,16 +94,17 @@
               <span class="text-sm text-danger">{{$message}}</span>
               @enderror
             </div>
+
             <div class="col-6">
               <label for="inputNanme4" class="form-label">Price (₦)</label>
-              <input type="number" placeholder="e.g 2000" name="price" class="form-control">
+              <input type="number" value="{{ $route->price }}" placeholder="e.g 2000" name="price" class="form-control">
               @error('price')
               <span class="text-sm text-danger">{{$message}}</span>
               @enderror
             </div>
             <div class="col-6">
               <label for="inputNanme4" class="form-label">No Of Seats Available</label>
-              <input type="number" placeholder="e.g 20" name="seats" class="form-control">
+              <input type="number" value="{{ $route->seats }}" placeholder="e.g 20" name="seats" class="form-control">
               @error('seats')
               <span class="text-sm text-danger">{{$message}}</span>
               @enderror
@@ -102,7 +112,7 @@
 
             <div class="col-6">
               <label for="departureDateTime" class="form-label">Departure Date/Time</label>
-              <input type="datetime-local" name="departure" class="form-control" id="departureDateTime">
+              <input type="datetime-local" value="{{ $route->departure }}" name="departure" class="form-control" id="departureDateTime">
               @error('departure')
               <span class="text-sm text-danger">{{$message}}</span>
               @enderror

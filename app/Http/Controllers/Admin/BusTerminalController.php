@@ -25,7 +25,7 @@ class BusTerminalController extends Controller
     {
         $data = $request->validate([
             'name' => ['required', 'string', 'unique:terminals,name'],
-            'phone' => ['required', 'min:10', 'max:11'],
+            'phone' => ['required', 'min:10', 'max:11', 'unique:terminals,phone'],
             'image' => ['required']
         ]);
 

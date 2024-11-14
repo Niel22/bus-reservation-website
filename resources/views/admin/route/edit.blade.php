@@ -9,7 +9,7 @@
         <div class="card-body py-3">
 
           <!-- Vertical Form -->
-          <form action="{{ route('admin.store-routes')}}" method="post" class="row g-3">
+          <form action="{{ route('admin.update-routes', $route->id)}}" method="post" class="row g-3">
             @csrf
             <div class="col-6">
               <label for="inputNanme4" class="form-label">Terminal</label>

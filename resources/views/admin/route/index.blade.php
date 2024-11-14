@@ -36,7 +36,7 @@
                                 <td>{{ \Carbon\Carbon::parse($route->departure)->format('D M d, Y h:i A') }}</td>
                                 <td>
                                     <a href="{{ route('admin.edit-routes', $route->id) }}" class="btn btn-sm btn-primary">Edit</a>
-                                    <a href="{{ route('admin.delete-bus-terminal', $route->id) }}" class="btn btn-sm btn-danger">Delete</a>
+                                    <a href="{{ route('admin.delete-route', $route->id) }}" class="btn btn-sm btn-danger">Delete</a>
                                 </td>
                             </tr>
                             @endforeach

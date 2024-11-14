@@ -46,6 +46,8 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin', 'as' => 'a
     Route::get('routes/create', [RouteController::class, 'create_route'])->name('create-routes');
     Route::post('routes/create', [RouteController::class, 'create'])->name('store-routes');
     Route::get('routes/{id}/edit', [RouteController::class, 'edit_route'])->name('edit-routes');
+    Route::post('routes/update/{id}', [RouteController::class, 'update_routes'])->name('update-routes');
+    Route::get('routes/delete/{id}', [RouteController::class, 'delete'])->name('delete-route');
 });
 
 

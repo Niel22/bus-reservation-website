@@ -2,16 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Route;
+use App\Models\Terminal;
 use Illuminate\Http\Request;
 
 class AppController extends Controller
 {
     public function index(){
-        return view('pages.home');
+        return view('pages.home', [
+            'terminals' => Terminal::all(),
+            'routes' => Route::all()
+        ]);
     }
 
     public function routes(){
-        return view('pages.routes');
+        return view('pages.routes', [
+            'terminals' => Terminal::all(),
+            'routes' => Route::all()
+        ]);
     }
 
     public function routes_details(){

@@ -5253,8 +5253,9 @@ GeoTrip Elements Styles
   background-color: #dee2e6;
 }
 
+/* Replacing with a bus icon for departure */
 .flightLine.departure:before {
-  content: "\f0fb";
+  content: "\f207"; /* Bus icon */
   font-family: "Font Awesome 6 Free";
   font-weight: 900;
   left: 50%;
@@ -5264,17 +5265,19 @@ GeoTrip Elements Styles
   position: absolute;
 }
 
+/* Replacing with a bus icon for return and adjusting the rotation */
 .flightLine.return:before {
-  content: "\e518";
+  content: "\f207"; /* Bus icon */
   font-family: "Font Awesome 6 Free";
   font-weight: 900;
   left: 50%;
   transform: translate(65%, -50%);
   top: 65%;
-  position: absolute;
-  rotate: 275deg;
+  rotate: 180deg; /* Rotated for a return journey */
   color: #a0abb8;
+  position: absolute;
 }
+
 
 /*---------- GeoTrip Elements Styles: City Styles ------------*/
 .cardCities {

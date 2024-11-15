@@ -11,9 +11,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [AppController::class,'index'])->name('index');
 Route::get('routes', [AppController::class,'routes'])->name('routes');
-Route::get('routes/details', [AppController::class,'routes_details'])->name('routes.details');
+
+Route::get('routes/{id}', [AppController::class,'routes_details'])->name('routes.details');
+Route::post('route/book', [AppController::class, 'book_route'])->name('routes.book');
+
 Route::get('routes/details/travellers-details', [AppController::class,'travellers_details'])->name('routes.travellers_details');
 Route::get('routes/details/payment', [AppController::class,'routes_payment'])->name('routes.payment');
+
 Route::get('routes/details/booking-success', [AppController::class,'booking_success'])->name('routes.booking_success');
 Route::get('about', [AppController::class,'about'])->name('about');
 Route::get('contact', [AppController::class,'contact'])->name('contact');

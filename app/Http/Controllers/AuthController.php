@@ -29,6 +29,12 @@ class AuthController extends Controller
 
         if($user){
             Auth::login($user);
+
+            if(session()->has('booking')){
+                $url = session('url');
+                return redirect()->to($url);
+            }
+            
             return redirect()->to(route('index'));
         }else{
             return back()->withErrors(['email', 'Problem Creating an account']);
@@ -43,7 +49,13 @@ class AuthController extends Controller
         ]);
 
         if(Auth::attempt(['email' => $data['email'], 'password' => $data['password']])){
+
+            if(session()->has('booking')){
+                $url = session('url');
+                return redirect()->to($url);
+            }
             return redirect()->to(route('index'));
+
         }else{
             return redirect()->back()->withErrors(['email' => 'Invalid email or password']);
         }

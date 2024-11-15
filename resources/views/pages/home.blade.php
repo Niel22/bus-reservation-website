@@ -189,7 +189,7 @@
                                         </div>
                                     </div>
                                     <div class="booking-wrapes d-flex align-items-center mt-3">
-                                        <a class="btn btn-md btn-light-primary fw-medium rounded full-width me-2" href="{{ route('routes.details') }}">Request Booking<i class="fa-solid fa-arrow-trend-up ms-2"></i></a>
+                                        <a class="btn btn-md btn-light-primary fw-medium rounded full-width me-2" href="{{ route('routes.details', $route->id) }}">Request Booking<i class="fa-solid fa-arrow-trend-up ms-2"></i></a>
                                     </div>
                                 </div>
                             </div>

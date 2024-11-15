@@ -5,81 +5,17 @@
     <div class="container">
 
 
-        <div class="row align-items-start">
+        <div class="row align-items-center">
             <div class="col-xl-12 col-lg-12 col-md-12">
                 <div class="div-title d-flex align-items-center mb-3">
                     <h4>Billing Details</h4>
                 </div>
-                <div class="row align-items-start">
-                    <div class="col-xl-8 col-lg-8 col-md-12">
+                <div class="row align-items-center">
 
-                        <div class="card mb-3">
-                            <div class="card-header">
-                                <h4>Basic Detail</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-
-                                    <div class="col-xl-6 col-lg-6 col-md-6">
-                                        <div class="form-group">
-                                            <label class="form-label">Billing Name</label>
-                                            <input type="text" class="form-control" placeholder="First Name">
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-6 col-lg-6 col-md-6">
-                                        <div class="form-group">
-                                            <label class="form-label">Email</label>
-                                            <input type="text" class="form-control" placeholder="Last Name">
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-6 col-lg-6 col-md-6">
-                                        <div class="form-group">
-                                            <label class="form-label">Phone</label>
-                                            <input type="text" class="form-control" placeholder="Phone Number">
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-6 col-lg-6 col-md-6">
-                                        <div class="form-group">
-                                            <label class="form-label">Address 01</label>
-                                            <input type="text" class="form-control" placeholder="Passport Number">
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-6 col-lg-6 col-md-6">
-                                        <div class="form-group">
-                                            <label class="form-label">Address 02</label>
-                                            <input type="text" class="form-control" placeholder="Passport Number">
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-6 col-lg-6 col-md-6">
-                                        <div class="form-group">
-                                            <label class="form-label">Country</label>
-                                            <input type="text" class="form-control" placeholder="Passport Number">
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-6 col-lg-6 col-md-6">
-                                        <div class="form-group">
-                                            <label class="form-label">City\State</label>
-                                            <input type="text" class="form-control" placeholder="Passport Number">
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-6 col-lg-6 col-md-6">
-                                        <div class="form-group">
-                                            <label class="form-label">Postal Code</label>
-                                            <input type="text" class="form-control" placeholder="Passport Number">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="col-xl-4 col-lg-4 col-md-12">
+                    <div class="col-xl-4 col-lg-4 col-md-12 m-auto">
                         <div class="side-block card rounded-2 p-3">
                             <div class="d-flex align-items-center justify-content-between mb-3">
                                 <h5 class="fw-semibold fs-6 mb-0">Payment Summary</h5>
-                                <div class="d-flex align-items-start"><a href="#" class="text-md fw-semibold text-primary">Manage
-                                        Cards</a></div>
                             </div>
                             <div class="mid-block mb-2">
                                 <div class="paymntCardsoption-groups">

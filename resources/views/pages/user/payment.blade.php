@@ -32,13 +32,15 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach(Auth::user()->transaction as $index => $transaction)
                                 <tr>
-                                    <th>01</th>
-                                    <td>BK32154</td>
-                                    <td>10 Sep 2023</td>
+                                    <th>{{ $loop->iteration }}</th>
+                                    <td class="text-uppercase">{{ $transaction->transaction_id }}</td>
+                                    <td>{{ $transaction->created_at->format('d M Y') }}</td>
                                     <td><span class="badge bg-light-success text-success fw-medium text-uppercase">Paid</span></td>
-                                    <td><span class="text-md fw-medium text-dark">$240</span></td>
+                                    <td><span class="text-md fw-medium text-dark">₦{{ number_format($transaction->price) }}</span></td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

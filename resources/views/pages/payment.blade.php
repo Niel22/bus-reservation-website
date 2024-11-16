@@ -66,7 +66,7 @@
                                 <ul class="list-group list-group-borderless">
                                     <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 py-1">
                                         <span class="fw-medium text-sm text-muted mb-0">Payment:</span>
-                                        <span class="fw-semibold text-md">₦45,000</span>
+                                        <span class="fw-semibold text-md">₦{{ $details->price }}</span>
                                     </li>
                                     <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 py-1">
                                         <span class="fw-medium text-sm text-muted mb-0">Transaction Fee</span>
@@ -74,7 +74,7 @@
                                     </li>
                                     <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 py-1">
                                         <span class="fw-medium text-sm text-muted mb-0">Total Price</span>
-                                        <span class="fw-semibold text-success text-md">₦45,500</span>
+                                        <span class="fw-semibold text-success text-md">₦{{ $details->price + 500 }}</span>
                                     </li>
                                 </ul>
                             </div>
@@ -87,7 +87,7 @@
                                         <span class="d-block text-sm text-muted-2 lh-2">Your payment is secure</span>
                                     </div>
                                 </div>
-                                <button class="btn fw-medium btn-primary full-width" type="button">Pay Now ₦45,500</button>
+                                <a href="{{ route('routes.pay', ['details' => $details]) }}" class="btn fw-medium btn-primary full-width" type="button">Pay Now ₦{{ number_format($details->price + 500) }}</a>
                             </div>
                             <div class="autopay-block-block">
                                 <div class="d-flex align-items-center justify-content-between">
@@ -106,12 +106,6 @@
                 </div>
             </div>
 
-            <div class="col-xl-12 col-lg-12 col-md-12">
-                <div class="text-center d-flex align-items-center justify-content-center mt-4">
-                    <a href="{{ route('routes.travellers_details') }}" class="btn btn-md btn-dark fw-semibold mx-2"><i class="fa-solid fa-arrow-left me-2"></i>Previous</a>
-                    <a href="{{ route('routes.booking_success') }}" class="btn btn-md btn-primary fw-semibold mx-2">Submit &amp; Confirm<i class="fa-solid fa-arrow-right ms-2"></i></a>
-                </div>
-            </div>
         </div>
     </div>
 </section>

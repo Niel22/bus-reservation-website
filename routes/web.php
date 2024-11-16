@@ -8,6 +8,7 @@ use App\Http\Controllers\AppController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 Route::get('/', [AppController::class,'index'])->name('index');
 Route::get('routes', [AppController::class,'routes'])->name('routes');
@@ -17,6 +18,7 @@ Route::post('route/book', [AppController::class, 'book_route'])->name('routes.bo
 
 Route::get('routes/details/travellers-details', [AppController::class,'travellers_details'])->name('routes.travellers_details');
 Route::get('routes/details/payment', [AppController::class,'routes_payment'])->name('routes.payment');
+Route::get('routes/{details}/pay', [AppController::class, 'pay'])->name('routes.pay');
 
 Route::get('routes/details/booking-success', [AppController::class,'booking_success'])->name('routes.booking_success');
 Route::get('about', [AppController::class,'about'])->name('about');
@@ -52,6 +54,10 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin', 'as' => 'a
     Route::get('routes/{id}/edit', [RouteController::class, 'edit_route'])->name('edit-routes');
     Route::post('routes/update/{id}', [RouteController::class, 'update_routes'])->name('update-routes');
     Route::get('routes/delete/{id}', [RouteController::class, 'delete'])->name('delete-route');
+
+    Route::get('bookins', [DashboardController::class, 'bookings'])->name('bookings');
+    Route::get('transactions', [DashboardController::class, 'transaction'])->name('transactions');
+    Route::get('all-users', [DashboardController::class, 'all_users'])->name('all_users');
 });
 
 

@@ -13,12 +13,16 @@ return new class extends Migration
     {
         Schema::create('booking_details', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id');
+            $table->string('booking_id');
             $table->string('full_name');
             $table->integer('id_no');
             $table->integer('seats');
             $table->string('contact');
             $table->string('terminal');
             $table->string('destination');
+            $table->string('duration');
+            $table->timestamp('departure');
             $table->integer('price');
             $table->string('address');
             $table->string('state');

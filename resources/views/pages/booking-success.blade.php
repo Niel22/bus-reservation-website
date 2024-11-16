@@ -16,7 +16,7 @@
                             <div class="d-flex align-items-center justify-content-center flex-column text-center mb-5">
                                 <h3 class="mb-0">Your booking was successful!</h3>
                                 <p class="text-md mb-0">Booking details sent to: <span
-                                        class="text-primary">youremail@example.com</span></p>
+                                        class="text-primary">{{ $transaction->user->email }}</span></p>
                             </div>
                             <div class="d-flex align-items-center justify-content-center flex-column mb-4">
                                 <div class="border br-dashed full-width rounded-2 p-3 pt-0">
@@ -24,49 +24,55 @@
                                         <li class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-6">
                                             <div class="d-block">
                                                 <p class="text-dark fw-medium lh-2 mb-0">Booking Reference</p>
-                                                <p class="text-muted mb-0 lh-2">#BKG12345</p>
+                                                <p class="text-muted mb-0 lh-2 text-uppercase">#{{ $transaction->transaction_id }}</p>
                                             </div>
                                         </li>
                                         <li class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-6">
                                             <div class="d-block">
                                                 <p class="text-dark fw-medium lh-2 mb-0">Date</p>
-                                                <p class="text-muted mb-0 lh-2">13 Oct 2024</p>
+                                                <p class="text-muted mb-0 lh-2">{{ $transaction->created_at->format('d M Y h:i A') }}</p>
                                             </div>
                                         </li>
                                         <li class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-6">
                                             <div class="d-block">
                                                 <p class="text-dark fw-medium lh-2 mb-0">Total Amount</p>
-                                                <p class="text-muted mb-0 lh-2">₦15,000</p>
+                                                <p class="text-muted mb-0 lh-2">₦{{ number_format($transaction->price) }}</p>
                                             </div>
                                         </li>
                                         <li class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-6">
                                             <div class="d-block">
                                                 <p class="text-dark fw-medium lh-2 mb-0">Payment Mode</p>
-                                                <p class="text-muted mb-0 lh-2">Bank Transfer</p>
+                                                <p class="text-muted mb-0 lh-2">Card</p>
                                             </div>
                                         </li>
+                                        @php
+                                            $names = explode(' ', $transaction->user->name);
+
+                                            $first = $names[0] ?? "";
+                                            $last = $names[1] ?? " ";
+                                        @endphp
                                         <li class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-6">
                                             <div class="d-block">
                                                 <p class="text-dark fw-medium lh-2 mb-0">First Name</p>
-                                                <p class="text-muted mb-0 lh-2">John</p>
+                                                <p class="text-muted mb-0 lh-2">{{ $first }}</p>
                                             </div>
                                         </li>
                                         <li class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-6">
                                             <div class="d-block">
                                                 <p class="text-dark fw-medium lh-2 mb-0">Last Name</p>
-                                                <p class="text-muted mb-0 lh-2">Doe</p>
+                                                <p class="text-muted mb-0 lh-2">{{ $last }}</p>
                                             </div>
                                         </li>
                                         <li class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-6">
                                             <div class="d-block">
                                                 <p class="text-dark fw-medium lh-2 mb-0">Phone</p>
-                                                <p class="text-muted mb-0 lh-2">08012345678</p>
+                                                <p class="text-muted mb-0 lh-2">{{ $transaction->user->user_details->mobile ?? ""}}</p>
                                             </div>
                                         </li>
                                         <li class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-6">
                                             <div class="d-block">
                                                 <p class="text-dark fw-medium lh-2 mb-0">Email</p>
-                                                <p class="text-muted mb-0 lh-2">youremail@example.com</p>
+                                                <p class="text-muted mb-0 lh-2">{{ $transaction->user->email }}</p>
                                             </div>
                                         </li>
                                     </ul>
@@ -99,7 +105,7 @@
                     <a href="#" class="text-muted fs-4" data-bs-dismiss="modal" aria-label="Close"><i
                             class="fa-solid fa-square-xmark"></i></a>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" id="printableArea">
                     <div class="invoiceblock-wrap p-3">
                         <!-- Header -->
                         <div class="invoice-header d-flex align-items-center justify-content-between mb-4">
@@ -109,10 +115,10 @@
                                             class="fa-solid fa-bus fs-2"></i></div>
                                 </div>
                                 <div class="inv-fliop01 ps-3">
-                                    <span class="text-uppercase d-block fw-semibold text-md text-dark lh-2 mb-0">Invoice
-                                        #NGT123456</span>
+                                    <span class="text-uppercase d-block fw-semibold text-md text-dark lh-2 mb-0">Reciept
+                                        </span>
                                     <span class="text-sm text-muted lh-2"><i class="fa-regular fa-calendar me-1"></i>Issued
-                                        Date: 12 Oct 2023</span>
+                                        Date: {{ $transaction->created_at->format('d M Y') }}</span>
                                 </div>
                             </div>
                             <div class="inv-fliop02"><span class="label text-success bg-light-success">Paid</span></div>
@@ -127,15 +133,13 @@
                                     <div class="col-xl-6 col-lg-6 col-md-6">
                                         <div class="invoice-desc mb-2">
                                             <h6>From</h6>
-                                            <p class="text-md lh-2 mb-0">Lagos Bus Services Limited<br>Head Office, Ikeja,
-                                                Lagos<br>Nigeria</p>
+                                            <p class="text-md lh-2 mb-0">Akwa Ibom Transportation Company<br>Nigeria</p>
                                         </div>
                                     </div>
                                     <div class="col-xl-5 col-lg-5 col-md-6">
                                         <div class="invoice-desc mb-2">
                                             <h6>To</h6>
-                                            <p class="text-md lh-2 mb-0">John Doe<br>21, Awolowo Road<br>Victoria Island,
-                                                Lagos</p>
+                                            <p class="text-md lh-2 mb-0">{{ $transaction->user->name }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -144,20 +148,16 @@
                             <!-- Invoice Mid Body -->
                             <div class="invoice-bodymid py-2">
                                 <ul class="gray rounded-3 p-3 m-0">
-                                    <li
-                                        class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 py-1">
-                                        <span class="fw-medium text-sm text-muted-2 mb-0">Account No.:</span>
-                                        <span class="fw-semibold text-muted-2 text-md">************7890</span>
-                                    </li>
+                                    
                                     <li
                                         class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 py-1">
                                         <span class="fw-medium text-sm text-muted-2 mb-0">Reference ID:</span>
-                                        <span class="fw-semibold text-muted-2 text-md">#INV56234</span>
+                                        <span class="fw-semibold text-muted-2 text-md text-uppercase">#{{ $transaction->transaction_id }}</span>
                                     </li>
                                     <li
                                         class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 py-1">
                                         <span class="fw-medium text-sm text-muted-2 mb-0">Pay by:</span>
-                                        <span class="fw-semibold text-muted-2 text-md">12 Oct 2023</span>
+                                        <span class="fw-semibold text-muted-2 text-md">{{ $transaction->created_at->format('d M Y') }}</span>
                                     </li>
                                 </ul>
                             </div>
@@ -176,10 +176,10 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <th scope="row">Bus Seat (Lagos to Abuja)</th>
-                                                <td>₦5,000</td>
-                                                <td>1</td>
-                                                <td>₦5,000</td>
+                                                <th scope="row">Bus Seat ({{ $details->terminal }} to {{ $details->destination }})</th>
+                                                <td>₦{{ number_format(($transaction->price - 500)/ $details->seats) }}</td>
+                                                <td>{{ $details->seats }}</td>
+                                                <td>₦{{ number_format($transaction->price - 500) }}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Service Charge</th>
@@ -191,7 +191,7 @@
                                                 <th scope="row">Total</th>
                                                 <td>-</td>
                                                 <td>-</td>
-                                                <td>₦5,500</td>
+                                                <td>₦{{ number_format($transaction->price) }}</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -200,17 +200,28 @@
 
                             <div class="invoice-bodyaction">
                                 <div class="d-flex text-end justify-content-end align-items-center">
-                                    <a href="#" class="btn btn-sm btn-light-success fw-medium me-2">Download
+                                    <a href="#" class="btn btn-sm btn-light-success fw-medium me-2" onclick="printInvoice()">Download
                                         Invoice</a>
                                     <a href="#" class="btn btn-sm btn-light-primary fw-medium me-2"
                                         onclick="printInvoice()">Print Invoice</a>
-                                </div>
+                               </div>
                                 @push('script')
-                                    <script>
-                                        function printInvoice() {
-                                            window.print();
-                                        }
-                                    </script>
+                                <script>
+                                    function printInvoice() {
+                                        var printContents = document.getElementById('printableArea').innerHTML;
+                                        var originalContents = document.body.innerHTML;
+                                
+                                        // Replace the entire document body with the modal content
+                                        document.body.innerHTML = printContents;
+                                
+                                        // Trigger print
+                                        window.print();
+                                
+                                        // Restore the original content after printing
+                                        document.body.innerHTML = originalContents;
+                                        window.location.reload(); // Reload to reset JavaScript bindings if necessary
+                                    }
+                                </script>
                                 @endpush
 
                             </div>

@@ -21,7 +21,7 @@
 
                                 <form action="{{ route('routes') }}" class="row gx-lg-2 g-3">
 
-                                    <div class="col-xl-5 col-lg-5 col-md-12">
+                                    <div class="col-xl-7 col-lg-7 col-md-12">
                                         <div class="row gy-3 gx-lg-2 gx-3">
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 position-relative">
                                                 <div class="form-group hdd-arrow mb-0">
@@ -66,21 +66,6 @@
                                                     <input class="form-control fw-bold choosedate" type="text" placeholder="Departure Date.." readonly="readonly">
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-2 col-lg-2 col-md-12">
-                                        <div class="form-groupp hdd-arrow mb-0">
-                                            <select class="occupant form-control fw-bold">
-                                                <option value="">Select Seats</option>
-                                                <option value="1">01 Seat</option>
-                                                <option value="2">02 Seats</option>
-                                                <option value="3">03 Seats</option>
-                                                <option value="4">04 Seats</option>
-                                                <option value="5">05 Seats</option>
-                                                <option value="6">06 Seats</option>
-                                                <option value="7">07 Seats</option>
-                                                <option value="8">08 Seats</option>
-                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-xl-1 col-lg-1 col-md-12">

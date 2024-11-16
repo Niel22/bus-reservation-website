@@ -148,6 +148,16 @@
                                                             <input type="hidden" readonly name="t_seats" value="{{ $route->seats }}" class="form-control" placeholder="Phone Number">
                                                         </div>
                                                     </div>
+                                                    <div class="col-xl-6 col-lg-6 col-md-6">
+                                                        <div class="form-group">
+                                                            <input type="hidden" readonly name="departure" value="{{ $route->departure }}" class="form-control" placeholder="Phone Number">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-6 col-lg-6 col-md-6">
+                                                        <div class="form-group">
+                                                            <input type="hidden" readonly name="duration" value="{{ $route->duration }}" class="form-control" placeholder="Phone Number">
+                                                        </div>
+                                                    </div>
 
                                                     <div class="bott-block">
                                                         <button class="btn fw-medium btn-primary full-width" type="submit">Book Ticket</button>

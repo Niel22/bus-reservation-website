@@ -34,7 +34,7 @@ class RouteController extends Controller
             'terminal_id' => ['required', 'integer', 'exists:terminals,id'],
             'destination' => ['required', Rule::in($states)],
             'hours' => ['required'],
-            'minutes' => ['required', 'integer', 'between:1,60'],
+            'minutes' => ['required', 'between:1,60'],
             'price' => ['required', 'integer'],
             'seats' => ['required', 'integer'],
             'departure' => ['required', 'date']

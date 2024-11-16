@@ -10,6 +10,8 @@ class BookingDetails extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
+        'booking_id',
         'full_name',
         'id_no',
         'seats',
@@ -19,7 +21,9 @@ class BookingDetails extends Model
         'country',
         'terminal',
         'destination',
-        'price'
+        'price',
+        'duration',
+        'departure'
     ];
 
     public function user(){
